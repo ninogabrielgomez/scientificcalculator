@@ -1,0 +1,231 @@
+/* ==========================================================
+   Spider-Man Themed Scientific Calculator - App.css
+   Matches classes in App.jsx:
+   .App .Header .Calculator .Display .Keypad
+   .Button .Button-sci .Button-mode .Button-operator
+   .Button-clear .Button-equals .Button-name
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Orbitron:wght@600;800&display=swap');
+
+:root {
+  --spidey-red: #d6001c;
+  --spidey-red-dark: #8b0000;
+  --spidey-blue: #0d3b9c;
+  --spidey-blue-dark: #061a4a;
+  --web-line: rgba(255, 255, 255, 0.12);
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --gold: #ffd23f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ---------- Override Vite defaults that shrink the app ---------- */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: block;
+  place-items: initial;
+  background: var(--spidey-blue-dark);
+}
+
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: initial;
+}
+
+/* ---------- Page background: city night + spider web ---------- */
+.App {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 24px 16px;
+  font-family: 'Bangers', 'Impact', sans-serif;
+  color: var(--white);
+  background:
+    /* radial web rings */
+    repeating-radial-gradient(
+      circle at 50% 0%,
+      transparent 0 58px,
+      var(--web-line) 58px 60px
+    ),
+    /* web spokes */
+    repeating-conic-gradient(
+      from 0deg at 50% 0%,
+      var(--web-line) 0deg 0.6deg,
+      transparent 0.6deg 15deg
+    ),
+    linear-gradient(180deg, var(--spidey-blue-dark) 0%, var(--spidey-blue) 55%, var(--spidey-red-dark) 100%);
+}
+
+/* ---------- Header ---------- */
+.Header {
+  font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 12px 24px;
+  background: var(--spidey-red);
+  border: 4px solid var(--black);
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 var(--black);
+  text-shadow: 3px 3px 0 var(--black);
+  transform: rotate(-2deg);
+}
+
+/* ---------- Calculator body (suit look) ---------- */
+.Calculator {
+  width: 480px;
+  max-width: calc(100vw - 32px);
+  padding: 26px;
+  border-radius: 24px;
+  border: 5px solid var(--black);
+  box-shadow: 10px 10px 0 var(--black), 0 0 40px rgba(214, 0, 28, 0.6);
+  background:
+    /* suit web texture */
+    repeating-linear-gradient(45deg, transparent 0 18px, rgba(0, 0, 0, 0.35) 18px 19px),
+    repeating-linear-gradient(-45deg, transparent 0 18px, rgba(0, 0, 0, 0.35) 18px 19px),
+    var(--spidey-red);
+}
+
+/* ---------- Display (mask-eye style screen) ---------- */
+.Display {
+  display: block;
+  min-height: 84px;
+  margin-bottom: 22px;
+  padding: 16px 20px;
+  text-align: right;
+  font-family: 'Orbitron', monospace;
+  font-weight: 800;
+  font-size: 1.9rem;
+  line-height: 1.3;
+  color: var(--white);
+  background: linear-gradient(180deg, #1b1b1b, var(--black));
+  border: 4px solid var(--white);
+  border-radius: 14px;
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.25), 0 0 0 4px var(--black);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Keypad grid ---------- */
+.Keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+/* ---------- Base button (blue) ---------- */
+.Button {
+  width: 100%;
+  height: 60px;
+  font-family: 'Bangers', 'Impact', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color: var(--white);
+  background: radial-gradient(circle at 30% 30%, #2a5fd6, var(--spidey-blue));
+  border: 3px solid var(--black);
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--black);
+  cursor: pointer;
+  text-shadow: 2px 2px 0 var(--black);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+}
+
+.Button:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+}
+
+.Button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--black);
+}
+
+/* ---------- Scientific buttons (dark blue) ---------- */
+.Button-sci {
+  font-size: 1.4rem;
+  background: radial-gradient(circle at 30% 30%, #1d3f8f, var(--spidey-blue-dark));
+}
+
+/* ---------- DEG / RAD mode toggle (red) ---------- */
+.Button-mode {
+  font-size: 1.3rem;
+  background: radial-gradient(circle at 30% 30%, #ff3b4f, var(--spidey-red-dark));
+  border-color: var(--white);
+}
+
+/* ---------- Operators (white web buttons) ---------- */
+.Button-operator {
+  font-size: 2rem;
+  color: var(--spidey-red);
+  text-shadow: 1px 1px 0 var(--black);
+  background:
+    repeating-radial-gradient(circle at center, transparent 0 8px, rgba(0, 0, 0, 0.15) 8px 9px),
+    repeating-conic-gradient(rgba(0, 0, 0, 0.15) 0deg 2deg, transparent 2deg 45deg),
+    var(--white);
+}
+
+/* ---------- Clear & DEL (black) ---------- */
+.Button-clear {
+  font-size: 1.6rem;
+  background: radial-gradient(circle at 30% 30%, #333, var(--black));
+  color: var(--spidey-red);
+  border-color: var(--white);
+}
+
+/* ---------- Equals (gold) ---------- */
+.Button-equals {
+  font-size: 2rem;
+  background: radial-gradient(circle at 30% 30%, #ffe680, var(--gold));
+  color: var(--black);
+  text-shadow: none;
+}
+
+/* ---------- Name button (full-width comic banner) ---------- */
+.Button-name {
+  grid-column: 1 / -1;
+  height: 56px;
+  font-size: 1.7rem;
+  letter-spacing: 4px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--spidey-blue) 0%, var(--spidey-blue) 50%, var(--spidey-red-dark) 50%, var(--spidey-red-dark) 100%);
+  border: 4px solid var(--black);
+}
+
+.Button-name:hover {
+  filter: brightness(1.25);
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 520px) {
+  .Calculator {
+    padding: 16px;
+  }
+  .Keypad {
+    gap: 9px;
+  }
+  .Button {
+    height: 52px;
+    font-size: 1.4rem;
+  }
+  .Button-sci,
+  .Button-mode,
+  .Button-clear {
+    font-size: 1.05rem;
+  }
+  .Display {
+    font-size: 1.5rem;
+  }
+}
